@@ -14,10 +14,17 @@ type Teacher {
 
 type Query {
   students: [Student]!
+  studentById(id: Int!): Student
   teachers: [Teacher]!
+}
+
+type DelStudentRes {
+  id: Int!
+  success: Boolean!
 }
 
 type Mutation {
   addStudent(name: String!, sex: Boolean!, age: Int): Student!
-  updateStudent(name: String, sex: Boolean, age: Int): Student!
+  updateStudent(id: Int!, name: String, sex: Boolean, age: Int): Student
+  delStudent(id: Int!): DelStudentRes!
 }

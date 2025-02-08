@@ -25,13 +25,22 @@ export class Teacher {
 export abstract class IQuery {
     abstract students(): Nullable<Student>[] | Promise<Nullable<Student>[]>;
 
+    abstract studentById(id: number): Nullable<Student> | Promise<Nullable<Student>>;
+
     abstract teachers(): Nullable<Teacher>[] | Promise<Nullable<Teacher>[]>;
+}
+
+export class DelStudentRes {
+    id: number;
+    success: boolean;
 }
 
 export abstract class IMutation {
     abstract addStudent(name: string, sex: boolean, age?: Nullable<number>): Student | Promise<Student>;
 
-    abstract updateStudent(name?: Nullable<string>, sex?: Nullable<boolean>, age?: Nullable<number>): Student | Promise<Student>;
+    abstract updateStudent(id: number, name?: Nullable<string>, sex?: Nullable<boolean>, age?: Nullable<number>): Nullable<Student> | Promise<Nullable<Student>>;
+
+    abstract delStudent(id: number): DelStudentRes | Promise<DelStudentRes>;
 }
 
 type Nullable<T> = T | null;
