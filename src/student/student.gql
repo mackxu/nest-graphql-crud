@@ -1,0 +1,23 @@
+type Student {
+  id: Int!
+  name: String!
+  sex: Boolean!
+  age: Int
+}
+
+type Teacher {
+  id: Int!
+  name: String!
+  subject: [String]!
+  students: [Student]!
+}
+
+type Query {
+  students: [Student]!
+  teachers: [Teacher]!
+}
+
+type Mutation {
+  addStudent(name: String!, sex: Boolean!, age: Int): Student!
+  updateStudent(name: String, sex: Boolean, age: Int): Student!
+}
