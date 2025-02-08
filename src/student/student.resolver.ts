@@ -1,5 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { Student, Teacher } from 'src/auto.graphql';
+import { CreateStudentDto } from './dto/create-student';
 
 const studentList: Student[] = [
   { id: 1, name: 'aaa', sex: false, age: 20 },
@@ -30,17 +31,13 @@ export class StudentResolver {
     return teacherList;
   }
   @Mutation('addStudent')
-  async creat(
-    @Args('name') name: string,
-    @Args('sex') sex: boolean,
-    @Args('age') age?: number,
-  ) {
+  async creat(@Args('createInput') input: CreateStudentDto) {
     const oneStudent = {
       id: Math.floor(Math.random() * 1000),
-      name,
-      sex,
-      age,
+      ...input,
     };
+
+    console.log(input, 'aaa');
 
     studentList.push(oneStudent);
     return oneStudent;

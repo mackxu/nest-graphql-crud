@@ -23,8 +23,14 @@ type DelStudentRes {
   success: Boolean!
 }
 
+input CreateStudentInput {
+  name: String!
+  sex: Boolean!
+  age: Int
+}
+
 type Mutation {
-  addStudent(name: String!, sex: Boolean!, age: Int): Student!
+  addStudent(createInput: CreateStudentInput): Student!
   updateStudent(id: Int!, name: String, sex: Boolean, age: Int): Student
   delStudent(id: Int!): DelStudentRes!
 }

@@ -8,6 +8,12 @@
 /* tslint:disable */
 /* eslint-disable */
 
+export class CreateStudentInput {
+    name: string;
+    sex: boolean;
+    age?: Nullable<number>;
+}
+
 export class Student {
     id: number;
     name: string;
@@ -36,7 +42,7 @@ export class DelStudentRes {
 }
 
 export abstract class IMutation {
-    abstract addStudent(name: string, sex: boolean, age?: Nullable<number>): Student | Promise<Student>;
+    abstract addStudent(createInput?: Nullable<CreateStudentInput>): Student | Promise<Student>;
 
     abstract updateStudent(id: number, name?: Nullable<string>, sex?: Nullable<boolean>, age?: Nullable<number>): Nullable<Student> | Promise<Nullable<Student>>;
 
